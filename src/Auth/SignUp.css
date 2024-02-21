@@ -1,0 +1,94 @@
+/* SignUp.css */
+.signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f8f9fa; /* Light gray background */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .signup-heading {
+    text-align: center;
+    color: #343a40; /* Dark gray color */
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .input-container {
+    margin-bottom: 15px;
+  }
+  
+  .input-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #495057; /* Dark gray color */
+  }
+  
+  .input-container input[type="email"],
+  .input-container input[type="text"],
+  .input-container input[type="password"],
+  .input-container input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .input-container input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .button-container {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .button-container button {
+    padding: 12px 24px;
+    background-color: #007bff; /* Blue color */
+    color: #ffffff; /* White color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button-container button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* SignUp.css */
+.alert {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .alert.success {
+    color: #155724; /* Dark green color for success */
+    background-color: #d4edda; /* Light green background for success */
+    border: 1px solid #c3e6cb; /* Border color for success */
+  }
+  
+  .alert.error {
+    color: #721c24; /* Dark red color for error */
+    background-color: #f8d7da; /* Light red background for error */
+    border: 1px solid #f5c6cb; /* Border color for error */
+  }
+  
+  .signup-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .signup-link a {
+    color: #007bff; /* Blue color */
+    text-decoration: none;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
+  

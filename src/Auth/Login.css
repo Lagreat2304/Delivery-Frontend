@@ -1,0 +1,90 @@
+/* styles.css */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  .login-heading {
+    text-align: center;
+    color: #000000; /* Blue color */
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .login-input {
+    margin-bottom: 15px;
+  }
+  
+  .login-input label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .login-input input[type="email"],
+  .login-input input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 5px;
+    outline: none;
+  }
+
+  .password-input-wrapper {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 5px; /* Adjust the distance from the right side */
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  input[type="email"],
+  input[type="password"],
+  input[type="radio"] {
+    padding-right: 30px; /* Adjust the padding to make space for the icon */
+  }
+  
+  
+  .login-input input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 12px 0;
+    background-color: #007bff; /* Blue color */
+    color: #fff; /* White color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .signup-link {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .signup-link a {
+    color: #007bff; /* Blue color */
+    text-decoration: none;
+  }
+  
+  .signup-link a:hover {
+    text-decoration: underline;
+  }
+  
