@@ -21,7 +21,7 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (formData.email === '' || formData.name === '' || formData.password === '' || formData.phone === '' || formData.type === '') {
+      if (formData.email === '' || formData.name === '' || formData.password === '' || formData.phone === '' || formData.phone.length!==10 || formData.type === '') {
         setAlert({ type: 'error', message: 'Please fill all the fields' });
         return;
       }

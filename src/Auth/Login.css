@@ -28,6 +28,9 @@
   
   .login-input input[type="email"],
   .login-input input[type="password"] {
+    fontSize: '16px';
+    padding: '8px'; 
+    width: '100%';
     width: 100%;
     padding: 10px;
     border: 1px solid #ced4da; /* Light gray border */

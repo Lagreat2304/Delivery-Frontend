@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Login.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -31,12 +32,16 @@ const Login = () => {
         password: '',
         type: ''
       });
-      setAlert({ type: 'success', message: 'Login successful' });
+      setAlert({ type: 'success', message: 'Login Successful!' });
+      console.log("Attempting Login");
       setTimeout(() => {
         if (response.data.usertype === 'delivery') {
           navigate('/delivery');
         } else if (response.data.usertype === 'inventory') {
           navigate('/inventory');
+        }
+        else if(response.data.usertype==='admin'){
+          navigate('/admin');
         }
       }, 3000);
     } catch (error) {
@@ -59,7 +64,11 @@ const Login = () => {
         <label>
           Password:
           <div className="password-input-wrapper">
-            <input type={showPassword ? 'text' : 'password'} name="password" value={formData.password} onChange={handleChange} />
+            <input type={showPassword ? 'text' : 'password'} name="password" value={formData.password}  style={{ 
+    fontSize: '16pxx', 
+    padding: '8px',   
+    width: '100%'    
+  }}  onChange={handleChange} />
             <span className="password-toggle" onClick={togglePasswordVisibility}>
               {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
             </span>
@@ -71,13 +80,11 @@ const Login = () => {
           Type:
         <input type="radio" name="type" value="delivery" checked={formData.type === 'delivery'} onChange={handleChange} /> Delivery
         <input type="radio" name="type" value="inventory" checked={formData.type === 'inventory'} onChange={handleChange} /> Inventory
+        <input type="radio" name="type" value="admin" checked={formData.type === 'admin'} onChange={handleChange} /> Admin
       </label>
       </div>
       <div>
         <button className="login-button" onClick={handleLogin}>Login</button>
-      </div>
-      <div className="signup-link">
-        <Link to={'/signup'}>Create an Account</Link>
       </div>
     </div>
   );
