@@ -14,7 +14,7 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/getorders');
+      const response = await axios.get('https://delivery-backend-1qwx.onrender.com/getorders');
       const formattedOrders = response.data.map(order => ({
         ...order,
         Expected_Delivery_Date: formatDate(order.Expected_Delivery_Date),
@@ -78,7 +78,7 @@ const Orders = () => {
 
   const fetchFilteredOrders = async status => {
     try {
-      const response = await axios.get(`http://localhost:5000/filteredorders?status=${status}`);
+      const response = await axios.get(`https://delivery-backend-1qwx.onrender.com/filteredorders?status=${status}`);
       const formattedOrders = response.data.map(order => ({
         ...order,
         Expected_Delivery_Date: formatDate(order.Expected_Delivery_Date),

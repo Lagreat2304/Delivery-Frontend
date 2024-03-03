@@ -33,7 +33,7 @@ const Delivery = () => {
 
   const fetchCartProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/cartProducts');
+      const response = await axios.get('https://delivery-backend-1qwx.onrender.com/cartProducts');
       setCartProducts(response.data);
     } catch (error) {
       console.error('Error fetching cart products:', error);
@@ -65,7 +65,7 @@ const Delivery = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/makeorders', {
+      const response = await axios.post('https://delivery-backend-1qwx.onrender.com/makeorders', {
         Cart_ID: selectedProduct.Cart_ID,
         Product_Name: selectedProduct.Product_Name,
         Seller : selectedProduct.Seller,
@@ -167,10 +167,20 @@ const Delivery = () => {
             <p>Price Per Product: <b>{selectedProduct.Price}</b></p>
             <p>Quantity: <b>{selectedProduct.Quantity}</b></p>
             <p>To: <b>{selectedProduct.To}</b></p>
-            <p> Expected Delivery Date: <b>{formatDate(selectedProduct.Delivery_Date)}</b></p>
+            <p> Expected Delivery Date: <b>{(selectedProduct.Delivery_Date)}</b></p>
             <p>Person-In-Charge: <input type='text' name='person' value={person || ""} onChange={(e) => setPerson(e.target.value)} /></p>
             <p>Phone Number: <input type='text' name='phoneno' maxLength={10}  value={phoneno|| " "} onChange={(e) => setPhoneno(e.target.value)} /></p>
-            <p>Delivered-Date: <input type="date" id="delivery" value={delivery || new Date().toISOString().split('T')[0]} min={new Date().toISOString().split('T')[0]} onChange={(e) => setDelivery(e.target.value)} required /></p>
+            <p>Delivered-Date: 
+  <input 
+    type="date" 
+    id="delivery" 
+    value={delivery || new Date().toISOString().split('T')[0]} 
+    min={new Date().toISOString().split('T')[0]} 
+    max={selectedProduct ? selectedProduct.Delivery_Date.split('T')[0] : ''}
+    onChange={(e) => setDelivery(e.target.value)} 
+    required 
+  />
+</p>
             <p>Status: <select value={selectedStatus} onChange={handleStatusChange}>
                   <option value="">Select Status</option>
                   <option value="Delivered">Delivered</option>

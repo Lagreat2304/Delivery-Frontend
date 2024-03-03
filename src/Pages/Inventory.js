@@ -38,7 +38,7 @@ const Inventory = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/products');
+      const response = await axios.get('https://delivery-backend-1qwx.onrender.com/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -55,7 +55,7 @@ const Inventory = () => {
         }, 3000);
         return;
       } else {
-        await axios.put('http://localhost:5000/delivery', {
+        await axios.put('https://delivery-backend-1qwx.onrender.com/delivery', {
           product: selectedProduct,
           quantityToAdd,
           to: to,
@@ -91,7 +91,7 @@ const Inventory = () => {
 
   const applyFilters = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/products/filter', {
+      const response = await axios.get('https://delivery-backend-1qwx.onrender.com/products/filter', {
         params: filterOptions
       });
       console.log(response.data);
@@ -179,17 +179,14 @@ const Inventory = () => {
         <div className="overlay">
           <div className="overlay-content">
             <h3>Add to Cart</h3>
-            <p>Product ID: {selectedProduct.Product_ID}</p>
-            <p>Product Name: {selectedProduct.Product_Name}</p>
-            <p>Seller: {selectedProduct.Seller}</p>
-            <p>Price: {selectedProduct.Price}</p>
-            <p>Quantity: {selectedProduct.Quantity}</p>
-          <p><b>Enter the number you want to add</b></p>
-          <input type="number" id="quantityToAdd" value={quantityToAdd || ''} onChange={(e) => setQuantityToAdd(e.target.value)} /> 
-          <p><b>To</b></p>
-          <input type="text" id="to" value={to || ''} onChange={(e) => setTo(e.target.value)} required />
-          <p><b>Delivery By</b></p>
-          <input type="date" id="delivery" value={delivery || new Date().toISOString().split('T')[0]} min={new Date().toISOString().split('T')[0]} onChange={(e) => setDelivery(e.target.value)} required />
+            <p><b>Product ID: </b>{selectedProduct.Product_ID}</p>
+            <p><b>Product Name: </b>{selectedProduct.Product_Name}</p>
+            <p><b>Seller: </b>{selectedProduct.Seller}</p>
+            <p><b>Price: </b>{selectedProduct.Price}</p>
+            <p><b>Quantity: </b>{selectedProduct.Quantity}</p>
+          <p><b>Enter the number you want to add:</b> <input type="number" id="quantityToAdd" value={quantityToAdd || ''} onChange={(e) => setQuantityToAdd(e.target.value)} /> </p>
+          <p><b>To:</b> <input type="text" id="to" value={to || ''} onChange={(e) => setTo(e.target.value)} required /></p>
+          <p><b>Delivery By:</b> <input type="date" id="delivery" value={delivery || new Date().toISOString().split('T')[0]} min={new Date().toISOString().split('T')[0]} onChange={(e) => setDelivery(e.target.value)} required /></p>
             <br/>
             <button onClick={handleAddToCartAndInventory}>Add to Cart</button>
             <button onClick={() => setCartOverlay(false)}>Close</button>

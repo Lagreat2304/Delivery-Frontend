@@ -25,7 +25,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/login', formData);
+      const response = await axios.post('https://delivery-backend-1qwx.onrender.com/login', formData);
       console.log(response.data);
       setFormData({
         email: '',

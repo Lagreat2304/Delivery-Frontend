@@ -43,7 +43,7 @@ const Admin = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/getemployee');
+      const response = await axios.get('https://delivery-backend-1qwx.onrender.com/getemployee');
       setUsers(response.data);
     } catch (error) {
       console.error('Error fetching Employees:', error);
@@ -69,7 +69,7 @@ const Admin = () => {
             return;
         }
         console.log(formDataToSend)
-        await axios.post('http://localhost:5000/addemployee', formDataToSend);
+        await axios.post('https://delivery-backend-1qwx.onrender.com/addemployee', formDataToSend);
         setNewUser({
           email: '',
           name: '',
@@ -102,7 +102,7 @@ const Admin = () => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/products/${selectedProduct.Product_ID}`, formData);
+      await axios.put(`https://delivery-backend-1qwx.onrender.com/products/${selectedProduct.Product_ID}`, formData);
       fetchProducts();
       setShowUpdateOverlay(false);
       setSuccessMessage('Product Updated Successfully!');
@@ -129,7 +129,7 @@ const Admin = () => {
       return;
     }
     try {
-      await axios.post('http://localhost:5000/addproducts', formData);
+      await axios.post('https://delivery-backend-1qwx.onrender.com/addproducts', formData);
       setSuccessMessage('Product added successfully');
       fetchProducts();
       setFormData({
@@ -158,7 +158,7 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/products');
+      const response = await axios.get('https://delivery-backend-1qwx.onrender.com/products');
       setProducts(response.data);
     } catch (error) {
       console.error('Error fetching products:', error);
