@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import './SignUp.css';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +16,11 @@ const SignUp = () => {
     type: ''
   });
   const [alert, setAlert] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -55,7 +63,16 @@ const SignUp = () => {
       </div>
       <div className='input-container'>
         <label>Password:</label>
-        <input type="password" name="password" value={formData.password} onChange={handleChange} />
+        <div className="password-input-wrapper">
+            <input type={showPassword ? 'text' : 'password'} name="password" value={formData.password}  style={{ 
+    fontSize: '16pxx', 
+    padding: '8px',   
+    width: '100%'    
+  }}  onChange={handleChange} />
+            <span className="password-toggle" onClick={togglePasswordVisibility}>
+              {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+            </span>
+          </div>
       </div>
       <div className='input-container'>
         <label>Phone:</label>

@@ -107,7 +107,13 @@ const Delivery = () => {
       <button className="logout-button" onClick={handleLogout}>Logout</button>
       <h2>Cart Products</h2>
       <h2>Delivery</h2>
-      <table>
+      {cartProducts.length === 0 ? (
+  <div style={{ textAlign: 'center' }}>
+  <h3 style={{ fontWeight: 'bold' }}>All Products are Delivered!!</h3>
+</div>
+) : (
+  <>
+        <table>
         <thead>
           <tr>
             <th>Cart ID</th>
@@ -137,15 +143,19 @@ const Delivery = () => {
           ))}
         </tbody>
       </table>
-      <div className="pagination">
-        <button onClick={() => handlePageChange(pagination.currentPage - 1)} disabled={pagination.currentPage === 1}>
-          Previous
-        </button>
-        <span>{pagination.currentPage}</span>
-        <button onClick={() => handlePageChange(pagination.currentPage + 1)} disabled={pagination.currentPage === totalPages}>
-          Next
-        </button>
-      </div>
+      {totalPages > 1 && (
+  <div className="pagination">
+    <button onClick={() => handlePageChange(pagination.currentPage - 1)} disabled={pagination.currentPage === 1}>
+      Previous
+    </button>
+    <span>{pagination.currentPage}</span>
+    <button onClick={() => handlePageChange(pagination.currentPage + 1)} disabled={pagination.currentPage === totalPages}>
+      Next
+    </button>
+  </div>
+  )}
+  </>
+)}
       {cartOverlay && selectedProduct && (
         <div className="overlay">
           <div className="overlay-content">

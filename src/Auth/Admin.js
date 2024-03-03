@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Admin.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
@@ -29,6 +31,11 @@ const Admin = () => {
   const[products,setProducts] = useState([]);
   const[showOverlay,setShowOverlay] = useState(false);
   const[showUpdateOverlay,setShowUpdateOverlay] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); 
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   useEffect(() => {
     fetchUsers();
@@ -158,10 +165,15 @@ const Admin = () => {
     }
   };
 
+  const handleLogout = () => {
+    window.location.href = '/login';
+  };
+
   return (
     <div className='table-container'>
       <h2>Users</h2>
       <button className='button' onClick={() => setShowAddUserOverlay(true)}>Add User</button>
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
       <table>
         <thead>
           <tr>
@@ -191,7 +203,17 @@ const Admin = () => {
             <div>
             <p> Email: <input type="email" name="email" value={newUser.email} onChange={handleInputChange} /></p>
              <p>Name: <input type="text" name="name" maxLength={30} value={newUser.name} onChange={handleInputChange} /></p>
-            <p> Password: <input type="password" name="password" value={newUser.password} onChange={handleInputChange} /></p>
+            <label> Password: <div className="password-input-wrapper">
+            <input type={showPassword ? 'text' : 'password'} name="password" value={newUser.password}  style={{ 
+    fontSize: '16pxx', 
+    padding: '8px',   
+    width: '100%'    
+  }}  onChange={handleInputChange} />
+            <span className="password-toggle" onClick={togglePasswordVisibility}>
+              {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
+            </span>
+          </div>
+          </label>
               <p>PhoneNo: <input type="text" maxLength={10} name="phone" value={newUser.phone} onChange={handleInputChange}  /></p>
               <p>Type: <label>
       <input 

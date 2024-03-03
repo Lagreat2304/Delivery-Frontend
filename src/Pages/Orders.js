@@ -78,7 +78,7 @@ const Orders = () => {
 
   const fetchFilteredOrders = async status => {
     try {
-      const response = await axios.get(`http://localhost:5000/getorders?status=${status}`);
+      const response = await axios.get(`http://localhost:5000/filteredorders?status=${status}`);
       const formattedOrders = response.data.map(order => ({
         ...order,
         Expected_Delivery_Date: formatDate(order.Expected_Delivery_Date),
@@ -111,16 +111,16 @@ const Orders = () => {
         Back to Delivery Page
       </button>
       <h2>Orders</h2>
-      <div>
-        <label htmlFor="statusFilter">Filter by Status:</label>
-        <select id="statusFilter" value={statusFilter} onChange={handleFilterChange}>
-          <option value="">All</option>
-          <option value="Delivered">Delivered</option>
-          <option value="Call not picked">Call not picked</option>
-          <option value="Returned">Returned</option>
-        </select>
-        <button onClick={resetFilter}>Reset Filter</button>
-      </div>
+      <div style={{ marginBottom: '20px' }}>
+      <label htmlFor="statusFilter" style={{ marginRight: '10px' }}>Filter by Status:</label>
+      <select id="statusFilter" value={statusFilter} onChange={handleFilterChange} style={{ marginRight: '10px' }}>
+        <option value="">All</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Call Not Picked">Call Not Picked</option>
+        <option value="Returned">Returned</option>
+      </select>
+      <button style={buttonStyle} onClick={resetFilter}>Reset Filter</button>
+    </div>
       <table>
         <thead>
           <tr>
