@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Login.css'; 
@@ -26,21 +26,22 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post('https://delivery-backend-1qwx.onrender.com/login', formData);
-      console.log(response.data);
       setFormData({
         email: '',
         password: '',
         type: ''
       });
       setAlert({ type: 'success', message: 'Login Successful!' });
-      console.log("Attempting Login");
       setTimeout(() => {
-        if (response.data.usertype === 'delivery') {
+        if (response.data.type === 'delivery') {
+          localStorage.setItem('delivery', response.data.token);
           navigate('/delivery');
-        } else if (response.data.usertype === 'inventory') {
+        } else if (response.data.type === 'inventory') {
+          localStorage.setItem('inventory', response.data.token);
           navigate('/inventory');
         }
-        else if(response.data.usertype==='admin'){
+        else if(response.data.type==='admin'){
+          localStorage.setItem('admin',response.data.token);
           navigate('/admin');
         }
       }, 3000);
@@ -49,6 +50,10 @@ const Login = () => {
       setAlert({ type: 'error', message: 'Invalid Login Credentials' });
     }
   };
+
+  useEffect(() => { if (localStorage.getItem('admin'))  navigate('/admin'); },[]);
+  useEffect(() => { if (localStorage.getItem('inventory'))  navigate('/inventory'); },[]);
+  useEffect(() => { if (localStorage.getItem('delivery'))  navigate('/delivery'); },[]);
 
   return (
     <div className="login-container">

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Inventory.css';
 
 const Inventory = () => {
   const [products, setProducts] = useState([]);
+  const[logout,setLogout] = useState(false);
+  const navigate = useNavigate();
   const [pagination, setPagination] = useState({
     currentPage: 1,
     productsPerPage: 5 // Change this value according to your requirement
@@ -136,8 +139,11 @@ const Inventory = () => {
   };
 
   const handleLogout = () => {
-    window.location.href = '/login';
+   localStorage.removeItem('inventory');
+   setLogout(true);
   };
+
+  React.useEffect(() => { if (!localStorage.getItem('inventory'))  navigate('/login'); },[logout]);
 
   return (
     <div className="inventory-container">

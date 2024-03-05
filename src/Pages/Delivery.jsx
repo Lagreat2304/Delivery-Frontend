@@ -18,6 +18,7 @@ const Delivery = () => {
   const[person,setPerson] = useState('');
   const[remarks,setRemarks] = useState('');
   const navigate = useNavigate();
+  const[logout,setLogout] = useState(false);
   const[phoneno,setPhoneno] = useState(0);
 
   useEffect(() => {
@@ -50,10 +51,13 @@ const Delivery = () => {
   }, []);
 
   const handleLogout = () => {
-    window.location.href = '/login';
+    localStorage.removeItem('delivery');
+    setLogout(true);
   };
 
+  React.useEffect(() => { if (!localStorage.getItem('delivery'))  navigate('/login'); },[logout]);
   const handleViewOrders = () => {
+    localStorage.setItem('orders', true);
     navigate("/orders");
   };
 

@@ -7,6 +7,7 @@ const Orders = () => {
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [statusFilter, setStatusFilter] = useState('');
   const Navigate = useNavigate();
+  const[logout,setLogout] = useState(false);
 
   useEffect(() => {
     fetchOrders();
@@ -76,6 +77,12 @@ const Orders = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('orders');
+    setLogout(true);
+  }
+
+  React.useEffect(() => { if (!localStorage.getItem('orders'))  Navigate('/login'); },[logout]);
   const fetchFilteredOrders = async status => {
     try {
       const response = await axios.get(`https://delivery-backend-1qwx.onrender.com/filteredorders?status=${status}`);
@@ -106,8 +113,8 @@ const Orders = () => {
   };
 
   return (
-    <div className="table-container">
-      <button style={buttonStyle} onClick={() => Navigate('/delivery')}>
+    <div className="table-container" style={{marginLeft: '200px'}}>
+      <button style={buttonStyle} onClick={handleLogout}>
         Back to Delivery Page
       </button>
       <h2>Orders</h2>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Admin.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Admin = () => {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
   const [showAddUserOverlay, setShowAddUserOverlay] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [newUser, setNewUser] = useState({
@@ -27,6 +29,7 @@ const Admin = () => {
     Quantity: '',
   });
   const[successMessage,setSuccessMessage] = useState(null);
+  const[logout,setLogout] = useState(false);
   const[errorMessage,setErrorMessage]  = useState(null);
   const[products,setProducts] = useState([]);
   const[showOverlay,setShowOverlay] = useState(false);
@@ -166,8 +169,11 @@ const Admin = () => {
   };
 
   const handleLogout = () => {
-    window.location.href = '/login';
+    localStorage.removeItem('admin');
+    setLogout(true);
   };
+
+  React.useEffect(() => { if (!localStorage.getItem('admin'))  navigate('/login'); },[logout]);
 
   return (
     <div className='table-container'>
